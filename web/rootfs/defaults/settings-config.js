@@ -1,142 +1,180 @@
-{{ $DEPLOYMENTINFO_USERREGION := .Env.DEPLOYMENTINFO_USERREGION | default "" -}}
-{{ $BRIDGE_CHANNEL := .Env.BRIDGE_CHANNEL | default "datachannel" -}}
-{{ $ENABLE_BRIDGE_CHANNEL := .Env.ENABLE_BRIDGE_CHANNEL | default "true" | toBool -}}
-{{ $ENABLE_CALENDAR := .Env.ENABLE_CALENDAR | default "false" | toBool -}}
-{{ $ENABLE_FILE_RECORDING_SERVICE := .Env.ENABLE_FILE_RECORDING_SERVICE | default "false" | toBool -}}
-{{ $ENABLE_FILE_RECORDING_SERVICE_SHARING := .Env.ENABLE_FILE_RECORDING_SERVICE_SHARING | default "false" | toBool -}}
-{{ $ENABLE_IPV6 := .Env.ENABLE_IPV6 | default "true" | toBool -}}
-{{ $ENABLE_LIPSYNC := .Env.ENABLE_LIPSYNC | default "false" | toBool -}}
-{{ $ENABLE_NO_AUDIO_DETECTION := .Env.ENABLE_NO_AUDIO_DETECTION | default "false" | toBool -}}
-{{ $ENABLE_STUN_TURN := .Env.ENABLE_STUN_TURN | default "true" | toBool -}}
-{{ $ENABLE_RECORDING := .Env.ENABLE_RECORDING | default "false" | toBool -}}
-{{ $ENABLE_REMB := .Env.ENABLE_REMB | default "true" -}}
-{{ $ENABLE_REQUIRE_DISPLAY_NAME := .Env.ENABLE_REQUIRE_DISPLAY_NAME | default "false" | toBool -}}
-{{ $ENABLE_SIMULCAST := .Env.ENABLE_SIMULCAST | default "true" -}}
-{{ $ENABLE_STATS_ID := .Env.ENABLE_STATS_ID | default "false" | toBool -}}
-{{ $ENABLE_STEREO := .Env.ENABLE_STEREO | default "false" | toBool -}}
-{{ $ENABLE_TALK_WHILE_MUTED := .Env.ENABLE_TALK_WHILE_MUTED | default "false" | toBool -}}
-{{ $ENABLE_TCC := .Env.ENABLE_TCC | default "true" -}}
-{{ $ENABLE_TRANSCRIPTIONS := .Env.ENABLE_TRANSCRIPTIONS | default "false" | toBool -}}
-{{ $ENABLE_USER_ROLES_BASED_ON_TOKEN := .Env.ENABLE_USER_ROLES_BASED_ON_TOKEN | default "false" -}}
-{{ $START_AUDIO_MUTED := .Env.START_AUDIO_MUTED | default 10 -}}
-{{ $START_VIDEO_MUTED := .Env.START_VIDEO_MUTED | default 10 -}}
-{{ $RESOLUTION := .Env.RESOLUTION | default "720" -}}
-{{ $RESOLUTION_MIN := .Env.RESOLUTION_MIN | default "180" -}}
-{{ $RESOLUTION_WIDTH := .Env.RESOLUTION_WIDTH | default "1280" -}}
-{{ $RESOLUTION_WIDTH_MIN := .Env.RESOLUTION_WIDTH_MIN | default "320" -}}
-{{ $TESTING_OCTO_PROBABILITY := .Env.TESTING_OCTO_PROBABILITY | default "0" -}}
-{{ $TESTING_CAP_SCREENSHARE_BITRATE := .Env.TESTING_CAP_SCREENSHARE_BITRATE | default "1" -}}
-{{ $XMPP_DOMAIN := .Env.XMPP_DOMAIN -}}
-{{ $XMPP_RECORDER_DOMAIN := .Env.XMPP_RECORDER_DOMAIN | default "" -}}
-{{ $XMPP_RECORDER_DOMAIN_PREFIX := .Env.XMPP_RECORDER_DOMAIN_PREFIX | default "recorder" -}}
+{{ $DEPLOYMENTINFO_USERREGION := .Env.DEPLOYMENTINFO_USERREGION | default "" }}
+{{ $BRIDGE_CHANNEL := .Env.BRIDGE_CHANNEL | default "datachannel" }}
+{{ $ENABLE_AUDIO_PROCESSING := .Env.ENABLE_AUDIO_PROCESSING | default "true" | toBool }}
+{{ $ENABLE_BRIDGE_CHANNEL := .Env.ENABLE_BRIDGE_CHANNEL | default "true" | toBool }}
+{{ $ENABLE_CALENDAR := .Env.ENABLE_CALENDAR | default "false" | toBool }}
+{{ $ENABLE_FILE_RECORDING_SERVICE := .Env.ENABLE_FILE_RECORDING_SERVICE | default "false" | toBool }}
+{{ $ENABLE_FILE_RECORDING_SERVICE_SHARING := .Env.ENABLE_FILE_RECORDING_SERVICE_SHARING | default "false" | toBool }}
+{{ $ENABLE_IPV6 := .Env.ENABLE_IPV6 | default "true" | toBool }}
+{{ $ENABLE_LIPSYNC := .Env.ENABLE_LIPSYNC | default "false" | toBool }}
+{{ $ENABLE_NO_AUDIO_DETECTION := .Env.ENABLE_NO_AUDIO_DETECTION | default "false" | toBool }}
+{{ $ENABLE_STUN_TURN := .Env.ENABLE_STUN_TURN | default "true" | toBool }}
+{{ $ENABLE_RECORDING := .Env.ENABLE_RECORDING | default "false" | toBool }}
+{{ $ENABLE_REMB := .Env.ENABLE_REMB | default "true" }}
+{{ $ENABLE_REQUIRE_DISPLAY_NAME := .Env.ENABLE_REQUIRE_DISPLAY_NAME | default "false" | toBool }}
+{{ $ENABLE_SIMULCAST := .Env.ENABLE_SIMULCAST | default "true" | toBool }}
+{{ $ENABLE_STATS_ID := .Env.ENABLE_STATS_ID | default "false" | toBool }}
+{{ $ENABLE_STEREO := .Env.ENABLE_STEREO | default "false" | toBool }}
+{{ $ENABLE_TALK_WHILE_MUTED := .Env.ENABLE_TALK_WHILE_MUTED | default "false" | toBool }}
+{{ $ENABLE_TCC := .Env.ENABLE_TCC | default "true" | toBool }}
+{{ $ENABLE_TRANSCRIPTIONS := .Env.ENABLE_TRANSCRIPTIONS | default "false" | toBool }}
+{{ $ENABLE_USER_ROLES_BASED_ON_TOKEN := .Env.ENABLE_USER_ROLES_BASED_ON_TOKEN | default "false" | toBool }}
+{{ $START_AUDIO_MUTED := .Env.START_AUDIO_MUTED | default 10 }}
+{{ $START_VIDEO_MUTED := .Env.START_VIDEO_MUTED | default 10 }}
+{{ $RESOLUTION := .Env.RESOLUTION | default "720" }}
+{{ $RESOLUTION_MIN := .Env.RESOLUTION_MIN | default "180" }}
+{{ $RESOLUTION_WIDTH := .Env.RESOLUTION_WIDTH | default "1280" }}
+{{ $RESOLUTION_WIDTH_MIN := .Env.RESOLUTION_WIDTH_MIN | default "320" }}
+{{ $TESTING_OCTO_PROBABILITY := .Env.TESTING_OCTO_PROBABILITY | default "0" }}
+{{ $TESTING_CAP_SCREENSHARE_BITRATE := .Env.TESTING_CAP_SCREENSHARE_BITRATE | default "1" }}
+{{ $XMPP_DOMAIN := .Env.XMPP_DOMAIN }}
+{{ $XMPP_RECORDER_DOMAIN := .Env.XMPP_RECORDER_DOMAIN | default "" }}
+{{ $XMPP_RECORDER_DOMAIN_PREFIX := .Env.XMPP_RECORDER_DOMAIN_PREFIX | default "recorder" }}
+
+
+// Analytics.
+//
 
 if (!config.hasOwnProperty('analytics')) config.analytics = {};
 
-{{ if .Env.AMPLITUDE_ID -}}
+{{ if .Env.AMPLITUDE_ID }}
 // The Amplitude APP Key:
 config.analytics.amplitudeAPPKey = '{{ .Env.AMPLITUDE_ID }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.GOOGLE_ANALYTICS_ID -}}
+{{ if .Env.GOOGLE_ANALYTICS_ID }}
 // The Google Analytics Tracking ID:
 config.analytics.googleAnalyticsTrackingId = '{{ .Env.GOOGLE_ANALYTICS_ID }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.ANALYTICS_SCRIPT_URLS -}}
+{{ if .Env.ANALYTICS_SCRIPT_URLS }}
 // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
 config.analytics.scriptURLs = [ '{{ join "','" (splitList "," .Env.ANALYTICS_SCRIPT_URLS) }}' ];
-{{ end -}}
+{{ end }}
 
-{{ if .Env.ANALYTICS_WHITELISTED_EVENTS -}}
+{{ if .Env.ANALYTICS_WHITELISTED_EVENTS }}
 config.analytics.whiteListedEvents = [ '{{ join "','" (splitList "," .Env.ANALYTICS_WHITELISTED_EVENTS) }}' ];
-{{ end -}}
+{{ end }}
 
-{{ if .Env.CALLSTATS_CUSTOM_SCRIPT_URL -}}
+{{ if .Env.CALLSTATS_CUSTOM_SCRIPT_URL }}
 config.callStatsCustomScriptUrl = '{{ .Env.CALLSTATS_CUSTOM_SCRIPT_URL }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.CALLSTATS_ID -}}
+{{ if .Env.CALLSTATS_ID }}
 // To enable sending statistics to callstats.io you must provide the
 // Application ID and Secret.
 config.callStatsID = '{{ .Env.CALLSTATS_ID }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.CALLSTATS_ID -}}
+{{ if .Env.CALLSTATS_ID }}
 config.callStatsSecret = '{{ .Env.CALLSTATS_SECRET }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.CHROME_EXTENSION_BANNER_JSON -}}
+// Enables callstatsUsername to be reported as statsId and used
+// by callstats as repoted remote id.
+config.enableStatsID = {{ $ENABLE_STATS_ID }};
+
+
+// Chrome extension banner.
+//
+
+{{ if .Env.CHROME_EXTENSION_BANNER_JSON }}
 config.chromeExtensionBanner = {{ .Env.CHROME_EXTENSION_BANNER_JSON }};
-{{ end -}}
+{{ end }}
+
+
+// Video configuration.
+//
 
 if (!config.hasOwnProperty('constraints')) config.constraints = {};
-if (!config.hasOwnProperty('video')) config.constraints.video = {};
-config.constraints.video.height = {ideal: {{$RESOLUTION}}, max: {{$RESOLUTION}}, min: {{$RESOLUTION_MIN}}};
-config.constraints.video.width = {ideal: {{$RESOLUTION_WIDTH}}, max: {{$RESOLUTION_WIDTH}}, min: {{$RESOLUTION_WIDTH_MIN}}};
+if (!config.constraints.hasOwnProperty('video')) config.constraints.video = {};
+
+config.resolution = {{ $RESOLUTION }};
+config.constraints.video.height = { ideal: {{ $RESOLUTION }}, max: {{ $RESOLUTION }}, min: {{ $RESOLUTION_MIN }} };
+config.constraints.video.width = { ideal: {{ $RESOLUTION_WIDTH }}, max: {{ $RESOLUTION_WIDTH }}, min: {{ $RESOLUTION_WIDTH_MIN }}};
+config.disableSimulcast = {{ not $ENABLE_SIMULCAST }};
+
+
+// Audio configuration.
+//
+
+config.enableNoAudioDetection = {{ $ENABLE_NO_AUDIO_DETECTION }};
+config.enableTalkWhileMuted = {{ $ENABLE_TALK_WHILE_MUTED }};
+config.disableAP = {{ not $ENABLE_AUDIO_PROCESSING }};
+config.stereo = {{ $ENABLE_STEREO }};
+config.startAudioMuted = {{ $START_AUDIO_MUTED }};
+
+
+// Deployment information.
+//
 
 if (!config.hasOwnProperty('deploymentInfo')) config.deploymentInfo = {};
 
-{{ if .Env.DEPLOYMENTINFO_ENVIRONMENT -}}
+{{ if .Env.DEPLOYMENTINFO_ENVIRONMENT }}
 config.deploymentInfo.environment = '{{ .Env.DEPLOYMENTINFO_ENVIRONMENT }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.DEPLOYMENTINFO_ENVIRONMENT_TYPE -}}
+{{ if .Env.DEPLOYMENTINFO_ENVIRONMENT_TYPE }}
 config.deploymentInfo.envType = '{{ .Env.DEPLOYMENTINFO_ENVIRONMENT_TYPE }}';
-{{ end -}}
+{{ end }}
 
-{{ if $DEPLOYMENTINFO_USERREGION -}}
+{{ if $DEPLOYMENTINFO_USERREGION }}
 config.deploymentInfo.userRegion = '{{ $DEPLOYMENTINFO_USERREGION }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.CONFCODE_URL -}}
+
+// Dial in/out services.
+//
+
+{{ if .Env.CONFCODE_URL }}
 config.dialInConfCodeUrl = '{{ .Env.CONFCODE_URL }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.DIALIN_NUMBERS_URL -}}
+{{ if .Env.DIALIN_NUMBERS_URL }}
 config.dialInNumbersUrl = '{{ .Env.DIALIN_NUMBERS_URL }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.DIALOUT_AUTH_URL -}}
+{{ if .Env.DIALOUT_AUTH_URL }}
 config.dialOutAuthUrl = '{{ .Env.DIALOUT_AUTH_URL }}';
-{{ end -}}
+{{ end }}
 
-{{ if .Env.DIALOUT_CODES_URL -}}
+{{ if .Env.DIALOUT_CODES_URL }}
 config.dialOutCodesUrl = '{{ .Env.DIALOUT_CODES_URL }}';
-{{ end -}}
+{{ end }}
 
-// Enable / disable simulcast support.
-{{ if $ENABLE_SIMULCAST -}}
-config.disableSimulcast = false;
-{{ else -}}
-config.disableSimulcast = true;
-{{ end -}}
 
-{{ if $ENABLE_CALENDAR -}}
-config.enableCalendarIntegration = true;
-{{ end -}}
+// Calendar service integration.
+//
 
-{{ if $ENABLE_LIPSYNC -}}
-// Lipsync hack in jicofo, may not be safe
-config.enableLipSync = true;
-{{ end -}}
+config.enableCalendarIntegration = {{ $ENABLE_CALENDAR }};
 
-{{ if $ENABLE_NO_AUDIO_DETECTION -}}
-config.enableNoAudioDetection = true;
-{{ end -}}
+{{ if .Env.GOOGLE_API_APP_CLIENT_ID }}
+config.googleApiApplicationClientID = '{{ .Env.GOOGLE_API_APP_CLIENT_ID }}';
+{{ end }}
+
+{{ if .Env.MICROSOFT_API_APP_CLIENT_ID }}
+config.microsoftApiApplicationClientID = '{{ .Env.MICROSOFT_API_APP_CLIENT_ID }}';
+{{ end }}
+
+// Advanced.
+//
+
+// Lipsync hack in jicofo, may not be safe.
+config.enableLipSync = {{ $ENABLE_LIPSYNC }};
 
 config.enableRemb = {{ $ENABLE_REMB }};
-
-{{ if $ENABLE_STATS_ID -}}
-// enables callstatsUsername to be reported as statsId and used
-// by callstats as repoted remote id
-config.enableStatsID = true;
-{{ end -}}
-
-{{ if $ENABLE_TALK_WHILE_MUTED -}}
-config.enableTalkWhileMuted = true;
-{{ end -}}
-
 config.enableTcc = {{ $ENABLE_TCC }};
+
+{{ if $ENABLE_BRIDGE_CHANNEL }}
+// Enables / disables a data communication channel with the Videobridge.
+// Values can be 'datachannel', 'websocket', true (treat it as
+// 'datachannel'), undefined (treat it as 'datachannel') and false (don't
+// open any channel).
+config.openBridgeChannel = '{{ $BRIDGE_CHANNEL }}';
+{{ end }}
+
+
+
 
 // configure client features based on existence of JWT token
 config.enableUserRolesBasedOnToken = {{ $ENABLE_USER_ROLES_BASED_ON_TOKEN }};
@@ -145,25 +183,11 @@ config.enableUserRolesBasedOnToken = {{ $ENABLE_USER_ROLES_BASED_ON_TOKEN }};
 config.etherpad_base = '{{.Env.PUBLIC_URL}}/etherpad/p/';
 {{ end -}}
 
-{{ if .Env.INVITE_SERVICE_CALLFLOWS_URL -}}
-config.inviteServiceCallFlowsUrl = '{{ .Env.INVITE_SERVICE_CALLFLOWS_URL }}';
-{{ end -}}
-
 {{ if .Env.INVITE_SERVICE_URL -}}
 config.inviteServiceUrl = '{{ .Env.INVITE_SERVICE_URL }}';
 {{ end -}}
 
-{{ if .Env.MICROSOFT_API_APP_CLIENT_ID -}}
-config.microsoftApiApplicationClientID = '{{ .Env.MICROSOFT_API_APP_CLIENT_ID }}';
-{{ end -}}
 
-{{ if $ENABLE_BRIDGE_CHANNEL }}
-// Enables / disables a data communication channel with the Videobridge.
-// Values can be 'datachannel', 'websocket', true (treat it as
-// 'datachannel'), undefined (treat it as 'datachannel') and false (don't
-// open any channel).
-config.openBridgeChannel = '{{ $BRIDGE_CHANNEL }}';
-{{ end -}}
 
 {{ if .Env.PEOPLE_SEARCH_URL -}}
 config.peopleSearchUrl = '{{ .Env.PEOPLE_SEARCH_URL }}';
@@ -175,27 +199,16 @@ if (!config.hasOwnProperty('p2p')) config.p2p = {};
 config.p2p.useStunTurn = true;
 {{ end -}}
 
-{{ if $ENABLE_REQUIRE_DISPLAY_NAME -}}
+
 // Require users to always specify a display name.
-config.requireDisplayName = true;
-{{ else -}}
-// No need to specify a display name.
-config.requireDisplayName = false;
-{{ end -}}
+config.requireDisplayName = {{ $ENABLE_REQUIRE_DISPLAY_NAME }};
 
-config.resolution = {{ $RESOLUTION }};
-
-config.startAudioMuted = {{ $START_AUDIO_MUTED }};
 
 {{ if .Env.START_BITRATE -}}
 config.startBitrate = '{{ .Env.START_BITRATE }}';
 {{ end -}}
 
 config.startVideoMuted = {{ $START_VIDEO_MUTED }};
-
-{{ if $ENABLE_STEREO -}}
-config.stereo = true;
-{{ end -}}
 
 {{ if $ENABLE_TRANSCRIPTIONS }}
 // Transcription (in interface_config,
