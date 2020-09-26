@@ -39,10 +39,11 @@ RUN \
     && apt-cleanup \
     && rm -rf /etc/prosody
 
+COPY jitsi-meet-prosody_1.0.1-1_all.deb /tmp/jitsi-meet-prosody.deb
+
 RUN \
     apt-dpkg-wrap apt-get update \
-    && apt-dpkg-wrap apt-get -d install -y jitsi-meet-prosody \
-    && dpkg -x /var/cache/apt/archives/jitsi-meet-prosody*.deb /tmp/pkg \
+    && dpkg -x /tmp/jitsi-meet-prosody.deb /tmp/pkg \
     && mv /tmp/pkg/usr/share/jitsi-meet/prosody-plugins /prosody-plugins \
     && apt-cleanup \
     && rm -rf /tmp/pkg /var/cache/apt

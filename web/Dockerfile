@@ -4,12 +4,14 @@ FROM ${JITSI_REPO}/base
 ADD https://dl.eff.org/certbot-auto /usr/local/bin/
 
 COPY rootfs/ /
+COPY jitsi-meet-web_1.0.1-1_all.deb /tmp/jitsi-meet-web.deb
+COPY jitsi-meet-web-config_1.0.1-1_all.deb /tmp/jitsi-meet-web-config.deb
 
 RUN \
 	apt-dpkg-wrap apt-get update && \
-	apt-dpkg-wrap apt-get install -y cron nginx-extras jitsi-meet-web && \
-	apt-dpkg-wrap apt-get -d install -y jitsi-meet-web-config && \
-    dpkg -x /var/cache/apt/archives/jitsi-meet-web-config*.deb /tmp/pkg && \
+	apt-dpkg-wrap apt-get install -y cron nginx-extras && \
+	dpkg -i /tmp/jitsi-meet-web.deb && \
+    dpkg -x /tmp/jitsi-meet-web-config.deb /tmp/pkg && \
     mv /tmp/pkg/usr/share/jitsi-meet-web-config/config.js /defaults && \
 	mv /usr/share/jitsi-meet/interface_config.js /defaults && \
 	apt-cleanup && \
